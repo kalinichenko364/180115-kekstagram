@@ -1,7 +1,7 @@
 # Личный проект «Кекстаграм» [![Build status][travis-image]][travis-url]
 
 * Студент: [Юрий Калиниченко](https://up.htmlacademy.ru/javascript/10/user/180115).
-* Наставник: `Неизвестно`.
+* Наставник: [Алексей Сафин].
 
 ---
 
