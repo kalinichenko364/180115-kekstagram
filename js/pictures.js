@@ -30,7 +30,6 @@ for ( var i = 0; i < 25; i++ ) {
   });
   
 };
-console.log(users)
 // 3.2
 
 var pictureTemplate = document.querySelector('#picture-template').content;
@@ -56,10 +55,59 @@ pictures.appendChild(fragment);
 
 // 3.4
 
-var uploadOverlay = document.querySelector('.upload-overlay').classList.add('hidden');
-
+var uploadOverlay = document.querySelector('.upload-overlay')
+uploadOverlay.classList.add('hidden');
 // 3.5
 
-var galleryOverlay = document.querySelector('.gallery-overlay').classList.remove('hidden');
+var galleryOverlay = document.querySelector('.gallery-overlay');
+// galleryOverlay.classList.remove('hidden');
+
+galleryOverlay.querySelector('.gallery-overlay-image').src = users[0].url;
+galleryOverlay.querySelector('.likes-count').textContent = users[0].likes;
+galleryOverlay.querySelector('.comments-count').textContent = users[0].comments.length;
+
+// 4.1
+var ESC_KEYCODE = 27;
+var ENTER_KEYCODE = 13;
+var btnClose = document.querySelector('.gallery-overlay-close');
+var pictures = document.querySelectorAll('.picture');
+
+var openGallery = function(evt) {
+  galleryOverlay.classList.remove('hidden');
+  document.addEventListener('keydown', escPress)
+};
+
+var closeGallery = function(evt) {
+  galleryOverlay.classList.add('hidden');
+  document.removeEventListener('keydown', escPress)
+}
+
+var enterPress = function(evt) {
+  
+  if (evt.keyCode === ENTER_KEYCODE) {
+    if (evt.target == btnClose) {
+      closeGallery();
+    }
+    if (galleryOverlay.classList.contains('hidden')) {
+      openGallery();
+    }
+  }
+}
+
+var escPress = function(evt) {
+  if (evt.keyCode === ESC_KEYCODE) {
+    closeGallery();
+  }
+}
+
+for ( var i =0; i < pictures.length; i++) {
+  pictures[i].addEventListener('click', openGallery);
+  pictures[i].addEventListener('keydown', enterPress);
+}
+btnClose.addEventListener('click', closeGallery);
+btnClose.addEventListener('keydown', enterPress);
+
+
+
 
 
